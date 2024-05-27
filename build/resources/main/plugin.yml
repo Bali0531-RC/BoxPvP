@@ -1,0 +1,23 @@
+#file: noinspection YAMLSchemaValidation
+name: BoxPVP
+version: 1.0
+main: org.bali.boxpvp.Main
+api-version: 1.18
+authors:
+  - bali0531
+description: A plugin for managing PVP in a box arena.
+
+commands:
+  boxpvp:
+    description: Main Command
+    usage: /boxpvp
+
+  boxpvp reload:
+    description: Reloads the BoxPVP configuration
+    usage: /boxpvp reload
+    permission: boxpvp.reload
+
+permissions:
+  boxpvp.reload:
+    description: Allows players to reload the BoxPVP configuration
+    default: op

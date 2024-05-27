@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BoxPvP.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BoxPvP.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RoyaleNetwork.main.iml" filepath="$PROJECT_DIR$/.idea/modules/RoyaleNetwork.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.bali.BoxPvP.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.bali.BoxPvP.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.royale.RoyaleNetwork.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.royale.RoyaleNetwork.main.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/main/java/org/bali/boxpvp/Bali411JoinMessage.java;D:/backup/RoyaleNetwork/src/main/java/org/bali/boxpvp/BoxPvp.java;D:/backup/RoyaleNetwork/src/main/java/org/bali/boxpvp/Main.java;D:/backup/RoyaleNetwork/src/main/java/org/bali/boxpvp/Settings.java;D:/backup/RoyaleNetwork/src/main/java/org/old/Baligmc.java;D:/backup/RoyaleNetwork/src/main/java/org/old/BaliOp.java;D:/backup/RoyaleNetwork/src/main/java/org/old/Balisp.java;D:/backup/RoyaleNetwork/src/main/java/org/old/ChatListener.java;D:/backup/RoyaleNetwork/src/main/java/org/old/DiscordWebhook.java;D:/backup/RoyaleNetwork/src/main/java/org/old/Login.java;D:/backup/RoyaleNetwork/src/main/java/org/old/LoginListener.java" />
+  </component>
+</project>
