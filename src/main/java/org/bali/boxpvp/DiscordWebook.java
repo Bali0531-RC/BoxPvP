@@ -1,4 +1,4 @@
-import org.bali.boxpvp;
+package org.bali.boxpvp;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.awt.Color;
