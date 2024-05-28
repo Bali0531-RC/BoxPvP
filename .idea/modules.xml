@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/RoyaleNetwork.main.iml" filepath="$PROJECT_DIR$/.idea/modules/RoyaleNetwork.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.bali.BoxPvP.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.bali.BoxPvP.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.royale.RoyaleNetwork.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.royale.RoyaleNetwork.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugins.BoxPvP.main.iml" filepath="$PROJECT_DIR$/.idea/modules/plugins.BoxPvP.main.iml" />
     </modules>
   </component>
 </project>

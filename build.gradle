@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'org.bali'
-version = '1.0-SNAPSHOT'  // Fixed typo here
+version = '1.1'  // Fixed typo here
 
 repositories {
     mavenCentral()

@@ -1,0 +1,4 @@
+messages:
+  reload_success: "&a[BoxPVP] Configuration reloaded!"
+  no_permission: "&cYou don't have permission to use this command."
+  usage: "&cUsage: /boxpvp reload"

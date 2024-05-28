@@ -11,10 +11,12 @@ public class BOXCommand implements CommandExecutor {
 
     private final JavaPlugin plugin;
     private final BoxPvp boxPvp;
+    private final Messages messages;
 
     public BOXCommand(JavaPlugin plugin, BoxPvp boxPvp) {
         this.plugin = plugin;
         this.boxPvp = boxPvp;
+        this.messages = new Messages(plugin);
     }
 
     @Override
@@ -26,14 +28,15 @@ public class BOXCommand implements CommandExecutor {
             if (!(sender instanceof Player) || sender.hasPermission("boxpvp.reload")) {
                 Settings.getInstance().load();
                 boxPvp.reloadSettings(); // Reload despawn blocks data
-                sender.sendMessage(ChatColor.GREEN + "[BoxPVP] Configuration reloaded!");
+                messages.reload();
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessage("messages.reload_success")));
                 return true;
             } else {
-                sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessage("messages.no_permission")));
                 return true;
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Usage: /boxpvp reload");
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessage("messages.usage")));
             return true;
         }
     }
