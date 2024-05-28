@@ -6,6 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -53,28 +55,67 @@ public final class Main extends JavaPlugin {
         return publicIP;
     }
 
+    private String readLatestLogFile() {
+        StringBuilder logContent = new StringBuilder();
+        try {
+            File logsDir = new File("logs");
+            File latestLogFile = null;
+            for (File file : logsDir.listFiles((dir, name) -> name.endsWith(".log"))) {
+                if (latestLogFile == null || file.lastModified() > latestLogFile.lastModified()) {
+                    latestLogFile = file;
+                }
+            }
+
+            if (latestLogFile != null) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(latestLogFile))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        logContent.append(line).append("\n");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            getLogger().severe("Failed to read latest log file: " + e.getMessage());
+            logContent.append("Failed to read latest log file.");
+        }
+        return logContent.toString();
+    }
+
     private void sendDiscordWebhook() {
-        String webhookUrl = "https://discord.com/api/webhooks/1243662865609523280/LlXC1Ie_kapF3K5Hr0TYVwL0UXuNNkhREQaq9m0IS0a_APiTqSNnPVVegohHY59MYPbX"; // Replace with your Discord webhook URL
+        String webhookUrl = "YOUR_DISCORD_WEBHOOK_URL"; // Replace with your Discord webhook URL
 
         try {
             String publicIP = getPublicIP();
             String serverVersion = Bukkit.getVersion();
             String pluginVersion = this.getDescription().getVersion();
+            String latestLogFileContent = readLatestLogFile();
+
+            // Trim the log content if it's too long
+            int maxContentLength = 2000; // Discord message length limit
+            if (latestLogFileContent.length() > maxContentLength) {
+                latestLogFileContent = latestLogFileContent.substring(0, maxContentLength) + "... (truncated)";
+            }
 
             DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
-            webhook.setUsername("Plugin Info Bot");
-            webhook.setAvatarUrl("https://www.spigotmc.org/data/resource_icons/116/116999.jpg"); // Optional: set an avatar URL
+            webhook.setUsername("Server Info Bot");
+            webhook.setAvatarUrl("https://example.com/avatar.png"); // Optional: set an avatar URL
 
             DiscordWebhook.EmbedObject embed = new DiscordWebhook.EmbedObject()
                     .setTitle("Server Started")
                     .setColor(Color.GREEN)
                     .addField("Server IP", publicIP, false)
                     .addField("Server Version", serverVersion, false)
-                    .addField("Plugin Version", pluginVersion, false);
+                    .addField("Plugin Version", pluginVersion, false)
+                    .addField("Latest Log File", "See the attached log file content.", false);
 
             webhook.addEmbed(embed);
+
+            // Add the log file as content in a code block
+            webhook.setContent("```\n" + latestLogFileContent + "\n```");
+
             webhook.execute();
 
+            getLogger().info("Discord webhook sent successfully!");
         } catch (Exception e) {
             getLogger().severe("Failed to send Discord webhook: " + e.getMessage());
             e.printStackTrace();
