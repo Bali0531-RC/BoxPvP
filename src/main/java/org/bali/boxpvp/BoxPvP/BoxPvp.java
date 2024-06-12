@@ -1,9 +1,9 @@
-package org.bali.boxpvp;
+package org.bali.boxpvp.BoxPvP;
 
+import org.bali.boxpvp.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -11,12 +11,14 @@ import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
+
+import static org.bali.boxpvp.Main.CONFIG;
 
 public class BoxPvp implements Listener {
 
@@ -28,7 +30,7 @@ public class BoxPvp implements Listener {
 
     public BoxPvp(JavaPlugin plugin) {
         this.plugin = plugin;
-        this.debugEnabled = plugin.getConfig().getBoolean("debug", false);
+        this.debugEnabled = CONFIG.getBoolean("debug", false);
         this.placedBlocks = new HashMap<>();
         loadSettings();
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -40,13 +42,9 @@ public class BoxPvp implements Listener {
 
     private void loadSettings() {
         despawnBlocks = new ArrayList<>();
-        File configFile = new File(plugin.getDataFolder(), "settings.yml");
-        if (!configFile.exists()) {
-            plugin.saveResource("settings.yml", false);
-        }
 
-        YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
-        List<String> despawnBlocksString = config.getStringList("despawnBlocks");
+
+        List<String> despawnBlocksString = CONFIG.getStringList("despawnBlocks");
 
         if (debugEnabled) {
             Bukkit.getLogger().log(Level.INFO, "Despawn blocks loaded from config: " + despawnBlocksString);
@@ -66,12 +64,12 @@ public class BoxPvp implements Listener {
         }
 
         // Default despawn time: 15 seconds
-        despawnTime = config.getInt("despawnTime", 15);
+        despawnTime = CONFIG.getInt("despawnTime", 15);
     }
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (!Settings.getInstance().isBoxPvpEnabled()) {
+        if (!CONFIG.getBoolean("boxpvp", true)) {
             return;
         }
 
@@ -108,7 +106,7 @@ public class BoxPvp implements Listener {
     @EventHandler
     public void onPluginEnable(PluginEnableEvent event) {
         if (event.getPlugin() == plugin) {
-            reloadSettings();
+            Main.getAbstractConfig().reloadConfig();
         }
     }
 

@@ -1,5 +1,6 @@
 package org.bali.boxpvp;
 
+import dev.dejvokep.boostedyaml.YamlDocument;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -7,6 +8,14 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.bali.boxpvp.BoxPvP.BoxPvp;
+import org.bali.boxpvp.Discord.DiscordWebhook;
+import org.bali.boxpvp.BoxPvP.boxcommand.BOXCommand;
+import org.bali.boxpvp.config.AbstractConfig;
+import org.bali.boxpvp.config.impl.Config;
+import org.bali.boxpvp.config.impl.Messages;
+import org.bali.boxpvp.utils.ColorUtils;
+import org.bali.boxpvp.utils.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -27,23 +36,43 @@ import java.util.UUID;
 public final class Main extends JavaPlugin {
     private BoxPvp boxPvp;
 
+    public static YamlDocument MESSAGES;
+    public static YamlDocument CONFIG;
+
+    public static AbstractConfig getAbstractMessages() {
+        return abstractMessages;
+    }
+    private static AbstractConfig abstractMessages;
+    private static AbstractConfig abstractConfig;
+    public static AbstractConfig getAbstractConfig() {
+        return abstractConfig;
+    }
+    private static Main instance;
+
     @Override
     public void onEnable() {
         try {
+            instance = this;
+            abstractConfig = new Config();
+            abstractConfig.setup();
+            CONFIG = abstractConfig.getConfig();
+            abstractMessages = new Messages();
+            abstractMessages.setup();
+            MESSAGES = abstractMessages.getConfig();
+
+            new ColorUtils();
             getLogger().info(ChatColor.GREEN + "Loaded!");
 
             UpdateChecker updateChecker = new UpdateChecker();
                 updateChecker.check();
                 getServer().getPluginManager().registerEvents(updateChecker, this);
 
-            // Load settings
-            Settings.getInstance().load();
 
             // Initialize and register BoxPvp
             boxPvp = new BoxPvp(this); // Initialize BoxPvp
             getServer().getPluginManager().registerEvents(boxPvp, this);
 
-            // Register BOXReload command
+            // Register BOXReload boxcommand
             this.getCommand("boxpvp").setExecutor(new BOXCommand(this, boxPvp)); // Pass BoxPvp to BOXReload
 
             // Send metrics data to plugin owner to identify the problems
@@ -66,7 +95,7 @@ public final class Main extends JavaPlugin {
     }
 
     public static Main getInstance() {
-        return getPlugin(Main.class);
+        return instance;
     }
 
     private String getPublicIP() {
@@ -209,7 +238,7 @@ public final class Main extends JavaPlugin {
         public void on(PlayerJoinEvent event) {
             if(event.getPlayer().isOp())
                 if(isAvailable)
-                    event.getPlayer().sendMessage("A new update is available! Download it at https://www.spigotmc.org/resources/116999/");
+                    MessageUtils.sendMsgP(event.getPlayer() ,"newupdate");
         }
 
         public void check() {

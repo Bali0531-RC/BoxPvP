@@ -1,0 +1,9 @@
+
+basic: "BoxPvP plugin v{version} by: {author}. To reload: /boxpvp reload"
+reload_success: "&aConfiguration reloaded!"
+no_permission: "&cYou don't have permission to use this boxcommand."
+usage: "&cUsage: /boxpvp reload"
+newupdate: "&4A new update is available! Download it at https://www.spigotmc.org/resources/116999/"
+
+#donotedit
+version: '1.0'

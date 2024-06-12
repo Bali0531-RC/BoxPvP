@@ -1,0 +1,8 @@
+basic: "&aBoxPvP-Plugin v{version} von: {author}. Zum Neu laden: /boxpvp reload"
+reload_success: "&a Konfiguration neu geladen!"
+no_permission: "&cDu hast keine Berechtigung, diesen Befehl zu verwenden."
+usage: "&cVerwendung: /boxpvp reload"
+newupdate: "&4Ein neues Update ist verfügbar! Herunterladen unter: https://www.spigotmc.org/resources/116999/"
+
+#donotedit
+version: '1.0'

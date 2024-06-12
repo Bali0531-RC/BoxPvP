@@ -5,30 +5,30 @@
 
 
 # Enable or disable the plugin
-boxpvp: true
+#boxpvp: true
 
 # The name of the blocks
-despawnBlocks:
-  - COBWEB
-  - WHITE_WOOL
-  - ORANGE_WOOL
-  - MAGENTA_WOOL
-  - LIGHT_BLUE_WOOL
-  - YELLOW_WOOL
-  - LIME_WOOL
-  - PINK_WOOL
-  - GRAY_WOOL
-  - LIGHT_GRAY_WOOL
-  - CYAN_WOOL
-  - PURPLE_WOOL
-  - BLUE_WOOL
-  - BROWN_WOOL
-  - GREEN_WOOL
-  - RED_WOOL
-  - BLACK_WOOL
+#despawnBlocks:
+#  - COBWEB
+#  - MAGENTA_WOOL
+#  - LIGHT_BLUE_WOOL
+#  - YELLOW_WOOL
+#  - LIME_WOOL
+#  - PINK_WOOL
+#  - GRAY_WOOL
+#  - LIGHT_GRAY_WOOL
+#  - CYAN_WOOL
+#  - PURPLE_WOOL
+#  - BLUE_WOOL
+#  - BROWN_WOOL
+#  - GREEN_WOOL
+#  - RED_WOOL
+#  - ORANGE_WOOL
+#  - WHITE_WOOL
 
+#  - BLACK_WOOL
 # The time in seconds before the blocks despawns
-despawnTime: 5
+#despawnTime: 5
 
 # Debug mode
 debug: false

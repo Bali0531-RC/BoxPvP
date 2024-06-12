@@ -1,0 +1,8 @@
+basic: "&aBoxPvP plugin v{version} szerzője: {author}. Újratöltéshez: /boxpvp reload"
+reload_success: "&a[BoxPVP] A konfiguráció újratöltve!"
+no_permission: "&cNincs jogosultságod az utasítás használatához."
+usage: "&cHasználat: /boxpvp reload"
+newupdate: "&4Elérhető egy új frissítés! Töltsd le itt: https://www.spigotmc.org/resources/116999/"
+
+#donotedit
+version: '1.0'
