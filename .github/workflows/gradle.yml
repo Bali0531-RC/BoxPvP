@@ -34,8 +34,19 @@ jobs:
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
     - name: Install findutils
       run: sudo apt-get update && sudo apt-get install -y findutils
+    - name: Check if xargs is available
+      run: which xargs
+    - name: Debug environment
+      run: |
+        echo $PATH
+        ls -l /usr/bin/xargs
+        xargs --version
+
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
+    - name: Verify gradlew permissions
+      run: ls -l ./gradlew
+
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
