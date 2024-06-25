@@ -1,15 +1,17 @@
-# make '' for false
-prefix: '&bBoxPvP '
-# def: '_en' , '_hu' , '_de'
-language: '_en'
 #
 # BoxPVP plugin by: bali0531
-# Version: 1.1
+# Version: 1.3
 #
 
 
 # Enable or disable the plugin
 boxpvp: true
+
+# Set to '' for false
+prefix: '&bBoxPvP '
+
+# Defaults: '_en' , '_hu' , '_de'
+language: '_en'
 
 # The name of the blocks
 despawnBlocks:
@@ -40,4 +42,5 @@ debug: false
 # DON'T CHANGE THIS
 version: '1.0'
 
-
+# Arenas
+arenas: []

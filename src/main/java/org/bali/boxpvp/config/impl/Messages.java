@@ -14,6 +14,14 @@ import java.io.IOException;
 import static org.bali.boxpvp.Main.CONFIG;
 
 public class Messages implements AbstractConfig {
+    @Override
+    public void saveConfig() {
+        try {
+            file.save();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     private YamlDocument file = null;
     private final File langDir = new File(Main.getInstance().getDataFolder(), "lang");
 

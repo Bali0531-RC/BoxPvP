@@ -6,4 +6,5 @@ public interface AbstractConfig {
     void setup();
     YamlDocument getConfig();
     void reloadConfig();
+    void saveConfig();
 }

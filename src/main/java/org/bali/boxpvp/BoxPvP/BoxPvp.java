@@ -11,12 +11,12 @@ import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import static org.bali.boxpvp.Main.CONFIG;
 
@@ -27,6 +27,7 @@ public class BoxPvp implements Listener {
     private List<Material> despawnBlocks;
     private int despawnTime;
     private boolean debugEnabled;
+    private List<Arena> arenas;
 
     public BoxPvp(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -65,6 +66,10 @@ public class BoxPvp implements Listener {
 
         // Default despawn time: 15 seconds
         despawnTime = CONFIG.getInt("despawnTime", 15);
+
+        // Load arenas
+        List<String> arenaStrings = Main.CONFIG.getStringList("arenas");
+        arenas = arenaStrings.stream().map(Arena::fromString).collect(Collectors.toList());
     }
 
     @EventHandler
@@ -80,7 +85,7 @@ public class BoxPvp implements Listener {
             Bukkit.getLogger().log(Level.INFO, "Block placed: " + blockType.toString());
         }
 
-        if (despawnBlocks.contains(blockType)) {
+        if (despawnBlocks.contains(blockType) && isInAnyArena(blockLocation)) {
             int blockId = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 Material currentBlockType = blockLocation.getBlock().getType();
                 if (currentBlockType.equals(blockType)) {
@@ -95,7 +100,9 @@ public class BoxPvp implements Listener {
             placedBlocks.put(blockLocation, blockId); // Add block to map with its ID
         }
     }
-
+    private boolean isInAnyArena(Location location) {
+        return arenas.stream().anyMatch(arena -> arena.contains(location));
+    }
     @EventHandler
     public void onPluginDisable(PluginDisableEvent event) {
         if (event.getPlugin() == plugin) {
