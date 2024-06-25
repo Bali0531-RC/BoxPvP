@@ -16,6 +16,10 @@ commands:
     description: Reloads the BoxPVP configuration
     usage: /boxpvp reload
     permission: boxpvp.reload
+  boxpvp createarena:
+    description: Creates a new BoxPVP arena
+    usage: /boxpvp createarena <cords1> <cords2>
+    permission: boxpvp.createarena
 
 permissions:
   boxpvp.reload:
