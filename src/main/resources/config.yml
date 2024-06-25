@@ -39,8 +39,8 @@ despawnTime: 5
 # Debug mode
 debug: false
 
-# DON'T CHANGE THIS
-version: '1.0'
-
 # Arenas
 arenas: []
+
+# DON'T CHANGE THIS
+version: '1.0'
