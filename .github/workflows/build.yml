@@ -18,6 +18,9 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
+      - name: Install xargs
+        run: sudo apt-get update && sudo apt-get install -y findutils
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
