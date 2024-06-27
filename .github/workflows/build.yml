@@ -1,8 +1,12 @@
 name: BoxPvP full build lifecycle
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -18,12 +22,14 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
+      - name: Install xargs
+        run: sudo apt-get install -y xargs
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Run gradle build lifecycle
-        run: |
-          ./gradlew build shadowJar --no-daemon
+        run: ./gradlew build shadowJar --no-daemon
 
       - name: Upload plugin file
         uses: actions/upload-artifact@v2
