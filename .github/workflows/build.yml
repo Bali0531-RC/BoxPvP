@@ -1,4 +1,4 @@
-name: ProtocolLib full build lifecycle
+name: BoxPvP full build lifecycle
 
 on:
   - push
@@ -17,6 +17,9 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Run gradle build lifecycle
         run: ./gradlew build shadowJar --no-daemon
