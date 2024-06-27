@@ -1,0 +1,32 @@
+name: BoxPvP full build lifecycle
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Run gradle build lifecycle
+        run: ./gradlew build shadowJar --no-daemon
+
+      - name: Upload plugin file
+        uses: actions/upload-artifact@v2
+        with:
+          name: BoxPvP
+          path: build/libs/BoxPvP-latest.jar
