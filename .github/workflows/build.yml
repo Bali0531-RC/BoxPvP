@@ -21,7 +21,9 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'gradle'
-
+      - name: Install findutils
+        run: sudo apt-get update && sudo apt-get install -y findutils
+        
       - name: Run gradle build lifecycle
         run: ./gradlew build shadowJar --no-daemon
 
