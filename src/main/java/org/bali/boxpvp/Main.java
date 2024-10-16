@@ -51,6 +51,14 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getLogger().info("===========================================");
+        getLogger().info(ChatColor.YELLOW + "DISCLAIMER: This plugin collects data for debugging purposes.");
+        getLogger().info(ChatColor.YELLOW + "The collected data includes server IP, server version, and plugin version.");
+        getLogger().info(ChatColor.YELLOW + "This data is used solely for improving the plugin and troubleshooting issues.");
+        getLogger().info(ChatColor.YELLOW + "By using this plugin, you agree to this data collection.");
+        getLogger().info(ChatColor.YELLOW + "If you have any concerns about this data collection, please contact the plugin author.");
+        getLogger().info(ChatColor.YELLOW + "Discord: bali0531");
+        getLogger().info("===========================================");
         try {
             instance = this;
             abstractConfig = new Config();
