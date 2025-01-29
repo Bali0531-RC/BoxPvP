@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew build shadowJar --no-daemon
 
       - name: Upload plugin file
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: BoxPvP
           path: build/libs/BoxPvP-latest.jar
